@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>独立实践者共建实验社群</title>
+<title>独立实践者共建实验社群 · 种子招募</title>
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,6 +55,32 @@
   .principle-num { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent-warm); margin-bottom: 12px; }
   .principle h3 { font-family: 'Noto Serif SC', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
   .principle p { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
+  .process { position: relative; padding-left: 32px; }
+  .process::before { content: ''; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+  .step { position: relative; padding-bottom: 36px; }
+  .step:last-child { padding-bottom: 0; }
+  .step-dot {
+    position: absolute; left: -32px; top: 4px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--surface); border: 2px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 500; color: var(--accent);
+  }
+  .step h3 { font-family: 'Noto Serif SC', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
+  .step p { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
+  .step .step-meta {
+    display: inline-block; margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+    color: var(--accent-warm); background: rgba(196,83,42,0.08);
+    padding: 2px 10px; border-radius: 100px;
+  }
+  .timeline-bar { display: flex; margin: 32px 0 16px; height: 8px; border-radius: 4px; overflow: hidden; }
+  .timeline-bar .seg-open { flex: 1; background: var(--accent); }
+  .timeline-labels { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); }
+  .info-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .info-item { padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .info-num { font-family: 'Noto Serif SC', serif; font-size: 2.2rem; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+  .info-label { font-size: 0.85rem; color: var(--muted); }
   .members-section { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .members-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 20px; }
   .member-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; background: var(--bg); transition: border-color 0.2s, transform 0.2s; }
@@ -64,16 +90,34 @@
   .member-role { font-size: 0.85rem; color: var(--accent); margin-bottom: 12px; }
   .member-focus { font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 12px; }
   .member-bio { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
-  .member-github { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--muted); text-decoration: none; border-bottom: 1px dotted var(--line); }
-  .member-github:hover { color: var(--accent); border-bottom-color: var(--accent); }
   .members-empty { text-align: center; padding: 60px 20px; border: 2px dashed var(--line); border-radius: var(--radius); }
   .members-empty-icon { font-family: 'JetBrains Mono', monospace; font-size: 2rem; color: var(--line); margin-bottom: 16px; }
   .members-empty h3 { font-family: 'Noto Serif SC', serif; font-size: 1.2rem; margin-bottom: 8px; }
   .members-empty p { color: var(--muted); font-size: 0.92rem; }
-  .info-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
-  .info-item { padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
-  .info-num { font-family: 'Noto Serif SC', serif; font-size: 2.2rem; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 8px; }
-  .info-label { font-size: 0.85rem; color: var(--muted); }
+  .faq-list { display: flex; flex-direction: column; gap: 12px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .faq-item summary {
+    padding: 18px 24px; cursor: pointer; font-weight: 500; font-size: 0.95rem;
+    list-style: none; display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.2s;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: var(--accent); font-weight: 300; }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item summary:hover { background: rgba(0,0,0,0.02); }
+  .faq-item .faq-body { padding: 0 24px 18px; color: var(--muted); font-size: 0.92rem; line-height: 1.8; }
+  .apply-box {
+    background: var(--ink); color: #fff; border-radius: var(--radius);
+    padding: 48px 40px; text-align: center;
+  }
+  .apply-box h2 { font-family: 'Noto Serif SC', serif; font-size: 1.6rem; margin-bottom: 12px; }
+  .apply-box p { color: rgba(255,255,255,0.7); max-width: 480px; margin: 0 auto 28px; line-height: 1.8; }
+  .apply-box .btn-light {
+    display: inline-block; padding: 14px 36px; background: #fff; color: var(--ink);
+    border-radius: var(--radius); text-decoration: none; font-weight: 500; transition: transform 0.2s;
+  }
+  .apply-box .btn-light:hover { transform: translateY(-2px); }
+  .apply-box .apply-note { margin-top: 16px; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
   .disclaimer { background: #EDECE6; padding: 32px 0; border-top: 1px solid var(--line); }
   .disclaimer p { font-size: 0.82rem; color: var(--muted); line-height: 1.8; }
   footer { padding: 40px 0; text-align: center; }
@@ -86,6 +130,7 @@
     .nav-links { display: none; }
     .hero { padding: 60px 0; }
     section { padding: 56px 0; }
+    .apply-box { padding: 32px 20px; }
   }
 </style>
 </head>
@@ -96,8 +141,9 @@
     <a href="./" class="nav-brand">独立实践者共建实验社群</a>
     <ul class="nav-links">
       <li><a href="#principles">理念</a></li>
+      <li><a href="#process">申请流程</a></li>
       <li><a href="#members">成员</a></li>
-      <li><a href="#recruit">招募</a></li>
+      <li><a href="#faq">FAQ</a></li>
     </ul>
   </div>
 </nav>
@@ -106,7 +152,7 @@
   <div class="container">
     <div class="hero-badge">
       <span class="dot"></span>
-      <span class="mono">STATUS: SEED_RECRUITING</span>
+      <span class="mono">STATUS: SEED_RECRUITING · 窗口进行中</span>
     </div>
     <h1>独自做事太久，<br>找一群<span class="em">同频的人</span>一起。</h1>
     <p class="hero-sub">
@@ -114,8 +160,8 @@
       成员之间互相校验思考、理性互评，在持续实践中获得归属感。
     </p>
     <div class="hero-actions">
-      <a href="#recruit" class="btn btn-primary">了解招募</a>
-      <a href="#principles" class="btn btn-ghost">社群理念</a>
+      <a href="#apply" class="btn btn-primary">立即申请</a>
+      <a href="#process" class="btn btn-ghost">查看申请流程</a>
     </div>
   </div>
 </header>
@@ -160,6 +206,84 @@
   </div>
 </section>
 
+<section id="process" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="container">
+    <span class="section-label">// APPLICATION_PROCESS</span>
+    <h2 class="section-title">申请流程</h2>
+    <p class="section-desc">全程人工评审，不看你作品多厉害，只看你是否在持续思考、是否愿意双向付出。</p>
+    <div class="process">
+      <div class="step">
+        <div class="step-dot">1</div>
+        <h3>阅读全部公开文档</h3>
+        <p>仔细阅读 README、风险声明、报名指南，确认你理解：社群不提供赚钱方案、需要每月交付作品、要参与共建。</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">2</div>
+        <h3>准备你的实践作品</h3>
+        <p>任意类型作品均可：编程、写作、产品调研、创作复盘。硬性要求：放在你自己的 GitHub 仓库（Gitee 可备选），配套 MD 文档记录思考过程、试错与迭代，仓库有多条 commit 历史。不评判技术水平高低。</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">3</div>
+        <h3>提交申请 + 缴纳评审费</h3>
+        <p>填写申请表，提交个人信息和作品仓库链接，缴纳 199 元评审费。评审费用于过滤低重视度申请、补偿人工评审时间。</p>
+        <span class="step-meta">初审不通过全额退款</span>
+      </div>
+      <div class="step">
+        <div class="step-dot">4</div>
+        <h3>人工初审</h3>
+        <p>审核仓库 commit 迭代记录和 MD 思考文档。通过则预约一对一语音答辩；不通过则全额退款，不安排答辩。</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">5</div>
+        <h3>语音答辩（15–30 分钟）</h3>
+        <p>核心环节。考察真实动机、迭代思维、接纳意见的能力。不考口才。申请者可自愿开启内部旁听，敏感内容可随时关闭。</p>
+        <span class="step-meta">答辩不通过全额退款</span>
+      </div>
+      <div class="step">
+        <div class="step-dot">6</div>
+        <h3>通过即入群</h3>
+        <p>分配编号 S-XXX，评审费转入社群公共共建基金。开始参与月度作品提交、互评、树洞官轮值、共建工作。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <span class="section-label">// RECRUITMENT_WINDOW</span>
+    <h2 class="section-title">招募窗口</h2>
+    <p class="section-desc">90 天窗口期，从正式对外发布招募文档当日起算。</p>
+    <div class="timeline-bar"><div class="seg-open"></div></div>
+    <div class="timeline-labels">
+      <span>Day 0 · 发布招募</span>
+      <span>Day 45 · 中期</span>
+      <span>Day 90 · 窗口期结束</span>
+    </div>
+    <div class="info-grid" style="margin-top:32px">
+      <div class="info-item">
+        <div class="info-num">90<span style="font-size:1rem;font-weight:400;color:var(--muted)"> 天</span></div>
+        <div class="info-label">招募窗口期</div>
+      </div>
+      <div class="info-item">
+        <div class="info-num">10–15<span style="font-size:1rem;font-weight:400;color:var(--muted)"> 人</span></div>
+        <div class="info-label">种子伙伴目标，不足10人则项目终止</div>
+      </div>
+      <div class="info-item">
+        <div class="info-num">199<span style="font-size:1rem;font-weight:400;color:var(--muted)"> 元</span></div>
+        <div class="info-label">评审费，不通过全额退</div>
+      </div>
+    </div>
+    <div style="margin-top:24px;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);">
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.8;">
+        <strong style="color:var(--ink)">窗口期结束判定：</strong>
+        答辩通过 ≥10 人 → 社群正式启动试运行；
+        答辩通过 ＜10 人 → 本次招募终止，项目放弃，不再继续。
+        达到 15 人立即关闭申请通道，已提交的申请仍走完评审。
+      </p>
+    </div>
+  </div>
+</section>
+
 <section id="members" class="members-section">
   <div class="container">
     <span class="section-label">// COMMUNITY_MEMBERS</span>
@@ -169,35 +293,66 @@
   </div>
 </section>
 
-<section id="recruit">
+<section id="faq">
   <div class="container">
-    <span class="section-label">// SEED_RECRUITMENT</span>
-    <h2 class="section-title">种子招募</h2>
-    <p class="section-desc">小规模人工筛选实验。不承诺成长、收入、人脉，所有实践风险由成员个人承担。</p>
-    <div class="info-grid">
-      <div class="info-item">
-        <div class="info-num">90<span style="font-size:1rem;font-weight:400;color:var(--muted)"> 天</span></div>
-        <div class="info-label">招募窗口期，自正式发布日起算</div>
-      </div>
-      <div class="info-item">
-        <div class="info-num">10–15<span style="font-size:1rem;font-weight:400;color:var(--muted)"> 人</span></div>
-        <div class="info-label">种子伙伴目标，不足10人则项目终止</div>
-      </div>
-      <div class="info-item">
-        <div class="info-num">199<span style="font-size:1rem;font-weight:400;color:var(--muted)"> 元</span></div>
-        <div class="info-label">评审费，初审/答辩不通过全额退款</div>
-      </div>
+    <span class="section-label">// FAQ</span>
+    <h2 class="section-title">常见问题</h2>
+    <p class="section-desc">申请前建议看完这些。</p>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>交钱就一定能加入社群吗？</summary>
+        <div class="faq-body">不能。缴纳 199 元评审费仅代表获得评审资格，最终录取取决于作品迭代记录与语音答辩。初审不通过或答辩不通过均全额原路退款。交钱不等于入群。</div>
+      </details>
+      <details class="faq-item">
+        <summary>答辩开启旁听，我的商业想法会泄露吗？</summary>
+        <div class="faq-body">旁听是自愿选项，你可以直接选择一对一语音不开启旁听。答辩过程中，只要你认为内容敏感，可以随时要求关闭旁听，切换私密对话。</div>
+      </details>
+      <details class="faq-item">
+        <summary>如果招募窗口期结束，合格人数不足10人会怎样？</summary>
+        <div class="faq-body">本次种子招募终止，社群项目放弃。已经提交申请的评审流程照常完成。已答辩通过的伙伴另行协商处理方案。</div>
+      </details>
+      <details class="faq-item">
+        <summary>进入社群之后，编号代表等级高低吗？</summary>
+        <div class="faq-body">编号仅作为档案记录标识，S 代表 Seed 种子伙伴，顺序编号，没有任何层级、权益高低之分。权益只绑定月度作品交付与共建贡献。</div>
+      </details>
+      <details class="faq-item">
+        <summary>社群交流有哪些红线不能碰？</summary>
+        <div class="faq-body">所有成员必须遵守国家法律法规。社群内禁止讨论时政敏感内容，禁止发表违法违规言论。触碰合规红线会被直接移出社群。</div>
+      </details>
+      <details class="faq-item">
+        <summary>我在国内访问 GitHub 不稳定，可以用其他平台放作品吗？</summary>
+        <div class="faq-body">可以。GitHub 为主选平台，如国内访问不便，可使用 Gitee 作为备选。仓库必须配套 MD 思考文档和多条 commit 迭代记录，平台不影响评审标准。</div>
+      </details>
+      <details class="faq-item">
+        <summary>答辩失败后多久可以重新申请？</summary>
+        <div class="faq-body">本次审核失败，3 个月后方可携带新作品再次提交申请。再次申请需要重新缴纳评审费。</div>
+      </details>
+      <details class="faq-item">
+        <summary>无故缺席答辩会怎样？</summary>
+        <div class="faq-body">提交申请、预约答辩后，无故缺席或临时取消且无合理理由，评审费不予退还。合理理由包括突发疾病、家庭紧急事务、重大设备或网络故障等不可抗因素，需在答辩前 24 小时告知并事后说明。</div>
+      </details>
+      <details class="faq-item">
+        <summary>加入后需要做什么？</summary>
+        <div class="faq-body">每月提交一份带 GitHub 仓库、MD 文档、多条 commit 迭代记录的实践作品；参与交叉互评；自愿承担部分共建事务（树洞官轮值、文档维护、评审协助等）；参与社群规则迭代讨论。社群不是付费圈子，需要付出时间精力共建。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="apply" style="padding-top:0;">
+  <div class="container">
+    <div class="apply-box">
+      <h2>准备好开始了吗？</h2>
+      <p>先完整阅读下方文档，再准备你的作品仓库，然后提交申请。我们只找愿意双向付出的同频实践者。</p>
+      <a href="seed-application-guide.md" class="btn-light">查看完整报名指南</a>
+      <div class="apply-note">申请入口：[申请表链接待补充] · 评审费 199 元 · 不通过全额退款</div>
     </div>
   </div>
 </section>
 
 <div class="disclaimer">
   <div class="container">
-    <p>
-      本项目属于社群实验，不保证长期运行。社群不提供赚钱方案、不传授变现套路，不承诺收入、项目、工作机会。
-      归属感与个人成长是共同体环境可能带来的结果，并非加入即保证。全体成员必须遵守国家法律法规。
-      评审结果仅代表现阶段理念匹配度，不对申请者能力做背书。所有规则以GitHub仓库文档为唯一可信来源。
-    </p>
+    <p>本项目属于社群实验，不保证长期运行。社群不提供赚钱方案、不传授变现套路，不承诺收入、项目、工作机会。归属感与个人成长是共同体环境可能带来的结果，并非加入即保证。全体成员必须遵守国家法律法规。评审结果仅代表现阶段理念匹配度，不对申请者能力做背书。所有规则以GitHub仓库文档为唯一可信来源。</p>
   </div>
 </div>
 
@@ -206,8 +361,9 @@
     <div class="footer-links">
       <a href="README.md">README</a>
       <a href="seed-application-guide.md">报名指南</a>
-      <!--<a href="interview-question.md">答辩题库</a>-->
+      <a href="interview-question.md">答辩题库</a>
       <a href="risk-statement.md">风险声明</a>
+      <a href="CHANGELOG.md">更新日志</a>
     </div>
     <p>独立实践者共建实验社群 · 种子招募阶段 · 一场小规模自治实验</p>
   </div>
@@ -234,11 +390,6 @@
     html += '<div class="member-role">' + esc(m.role) + '</div>';
     html += '<div class="member-focus">' + esc(m.focus) + '</div>';
     if (m.bio) html += '<div class="member-bio">' + esc(m.bio) + '</div>';
-    if (m.github) {
-      html += '<a class="member-github" href="' + m.github + '" target="_blank" rel="noopener">';
-      html += '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>';
-      html += m.github.replace('https://github.com/','') + '</a>';
-    }
     html += '</div>';
   });
   grid.innerHTML = html;
