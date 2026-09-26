@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>种子报名指南｜独立实践者共建实验社群</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F4F3EF; --surface: #FFFFFF; --ink: #1A1A1A; --ink-soft: #2D2D2D;
+    --muted: #6B6862; --line: #E2DFD8; --accent: #2D5A3D; --accent-warm: #C4532A; --radius: 6px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg); color: var(--ink); line-height: 1.8; font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: 'JetBrains Mono', 'Courier New', monospace; }
+  .container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(244,243,239,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .nav-brand { font-family: 'Noto Serif SC', serif; font-weight: 700; font-size: 1.05rem; text-decoration: none; color: var(--ink); }
+  .nav-back { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent); text-decoration: none; }
+  .page-header { padding: 60px 0 40px; border-bottom: 1px solid var(--line); }
+  .page-header .label { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent); margin-bottom: 12px; }
+  .page-header h1 { font-family: 'Noto Serif SC', serif; font-size: 2.2rem; font-weight: 900; line-height: 1.3; margin-bottom: 16px; }
+  .page-header p { color: var(--muted); font-size: 1.05rem; }
+  section { padding: 48px 0; border-bottom: 1px solid var(--line); }
+  h2 { font-family: 'Noto Serif SC', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; }
+  h2 .num { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--accent-warm); margin-right: 8px; }
+  h3 { font-family: 'Noto Serif SC', serif; font-size: 1.1rem; font-weight: 700; margin: 24px 0 10px; }
+  p { margin-bottom: 14px; color: var(--ink-soft); }
+  ul, ol { margin: 0 0 16px 24px; color: var(--ink-soft); }
+  li { margin-bottom: 8px; }
+  .callout {
+    padding: 20px 24px; border-radius: var(--radius); margin: 20px 0;
+    font-size: 0.92rem; line-height: 1.7;
+  }
+  .callout-warn { background: rgba(196,83,42,0.08); border-left: 3px solid var(--accent-warm); }
+  .callout-ok { background: rgba(45,90,61,0.08); border-left: 3px solid var(--accent); }
+  .callout-info { background: var(--surface); border: 1px solid var(--line); }
+  .callout strong { color: var(--ink); }
+  .code-block {
+    background: #1e1e1e; color: #d4d4d4; padding: 16px 20px; border-radius: var(--radius);
+    font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6;
+    overflow-x: auto; margin: 16px 0;
+  }
+  .code-block .cmt { color: #6a9955; }
+  .code-block .cmd { color: #4ec9b0; }
+  .step-list { counter-reset: step; list-style: none; margin-left: 0; }
+  .step-list > li {
+    counter-increment: step; padding: 16px 16px 16px 56px; position: relative;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    margin-bottom: 12px;
+  }
+  .step-list > li::before {
+    content: counter(step); position: absolute; left: 16px; top: 16px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 500;
+  }
+  .step-list > li strong { display: block; margin-bottom: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.92rem; }
+  th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--line); }
+  th { background: var(--surface); font-weight: 600; font-family: 'Noto Serif SC', serif; }
+  td { color: var(--ink-soft); }
+  .faq-item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
+  .faq-item summary { padding: 16px 20px; cursor: pointer; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; font-size: 1.2rem; color: var(--accent); }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item .faq-body { padding: 0 20px 16px; color: var(--muted); font-size: 0.92rem; }
+  .cta-box { background: var(--ink); color: #fff; border-radius: var(--radius); padding: 40px; text-align: center; margin: 40px 0; }
+  .cta-box h2 { color: #fff; margin-bottom: 12px; }
+  .cta-box p { color: rgba(255,255,255,0.7); margin-bottom: 24px; }
+  .cta-box .btn { display: inline-block; padding: 14px 36px; background: #fff; color: var(--ink); border-radius: var(--radius); text-decoration: none; font-weight: 500; }
+  .placeholder { background: #fff3cd; padding: 2px 8px; border-radius: 4px; font-size: 0.9em; }
+  footer { padding: 40px 0; text-align: center; }
+  footer a { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--muted); text-decoration: none; margin: 0 12px; }
+  footer a:hover { color: var(--accent); }
+  @media (max-width: 720px) { .page-header h1 { font-size: 1.6rem; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="./" class="nav-brand">独立实践者共建实验社群</a>
+    <a href="./" class="nav-back">← 返回首页</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <div class="label">// SEED_APPLICATION_GUIDE</div>
+    <h1>种子伙伴报名指南</h1>
+    <p>全程人工评审。作品不限品类，重点考察思考、动机、心态。不看你多厉害，只看你是否在持续思考、愿意双向付出。</p>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <h2><span class="num">01</span>申请前先搞清楚</h2>
+    <p>在花时间准备作品之前，请确认你理解以下几点，避免浪费彼此时间：</p>
+    <div class="callout callout-warn">
+      <strong>⚠️ 这不是你要找的社群，如果你：</strong>
+      <ul style="margin-top:8px;margin-bottom:0;">
+        <li>想要现成的赚钱项目、变现套路、大佬带你飞</li>
+        <li>希望入群后有人给你派活、喂思路</li>
+        <li>只想要人脉资源，不想自己持续产出</li>
+        <li>不想花时间写思考文档、不想参与共建事务</li>
+      </ul>
+    </div>
+    <div class="callout callout-ok">
+      <strong>✅ 这可能适合你，如果你：</strong>
+      <ul style="margin-top:8px;margin-bottom:0;">
+        <li>已经在独立做某件事（写东西、做工具、做产品、研究问题），且持续在推进</li>
+        <li>想要同频的人互相校验思路、给真实反馈</li>
+        <li>愿意每月交付一份带迭代记录的作品</li>
+        <li>认同社群靠规则自治，不依附任何个人</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2><span class="num">02</span>准备你的作品仓库</h2>
+    <p>这是唯一的硬性要求。作品本身不重要（绘画、编程、小说、产品调研、创作复盘都行），<strong>重要的是你在 GitHub/Gitee 仓库里留下的思考和迭代痕迹</strong>。</p>
+
+    <h3>具体怎么操作</h3>
+    <ol class="step-list">
+      <li>
+        <strong>注册并登录 GitHub 或 Gitee</strong>
+        <p>GitHub 为主选平台。如果你在国内访问 GitHub 不稳定，用 Gitee（码云）完全可以，评审标准一样。</p>
+      </li>
+      <li>
+        <strong>新建一个公开仓库（Public）</strong>
+        <p>仓库名随意，比如 <code>my-writing-journey</code>、<code>product-research-notes</code>。务必设为 <strong>Public</strong>（公开），否则评审看不到。</p>
+      </li>
+      <li>
+        <strong>在仓库里创建一个 MD 文档</strong>
+        <p>文件名建议 <code>THINKING.md</code> 或 <code>README.md</code>。这份文档要记录你的<strong>思考过程</strong>，不是最终成果说明书。</p>
+      </li>
+      <li>
+        <strong>做多次 commit，不要一次写完</strong>
+        <p>这是核心。评审看的是你的迭代轨迹——你怎么从最初的想法，一步步推翻、修改、调整到现在的样子。一次 commit 写完整个文档 = 没有迭代痕迹 = 初审大概率不通过。</p>
+      </li>
+    </ol>
+
+    <h3>MD 思考文档应该写什么</h3>
+    <p>不需要文采，不需要结构化模板，诚实记录就行。参考方向：</p>
+    <div class="code-block">
+<span class="cmt"># 我的作品思考记录</span>
+
+<span class="cmt">## 最初为什么想做这件事</span>
+（你最初的动机是什么？解决什么问题？）
+
+<span class="cmt">## 第一版想法（后来被推翻了）</span>
+（你一开始怎么做的？后来发现哪里不对？）
+
+<span class="cmt">## 中途遇到的卡点</span>
+（哪一步卡住了？怎么解决的？或者还没解决？）
+
+<span class="cmt">## 现在回看，最大的问题是什么</span>
+（你自己觉得这个作品哪里不行？局限性在哪？）
+
+<span class="cmt">## 如果重做一遍会怎么改</span>
+（你的反思和改进方向）
+    </div>
+
+    <div class="callout callout-info">
+      <strong>💡 关于 commit 数量：</strong>没有硬性数字要求。一般来说 5-10 次以上、跨度几天到几周的 commit 比较能说明问题。不要为了凑数而一天内刷 20 次无意义 commit——评审看得出来。真实的迭代节奏最重要。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2><span class="num">03</span>提交申请</h2>
+    <p>准备好作品仓库后，按以下步骤提交：</p>
+    <ol class="step-list">
+      <li>
+        <strong>复制你的仓库链接</strong>
+        <p>在浏览器打开你的仓库，复制地址栏链接，形如 <code>https://github.com/你的用户名/仓库名</code> 或 <code>https://gitee.com/你的用户名/仓库名</code>。</p>
+      </li>
+      <li>
+        <strong>填写申请表</strong>
+        <p>点击下方按钮进入申请表，填写你的个人信息并粘贴仓库链接。</p>
+        <p><span class="placeholder">申请表链接：待补充（发布前替换为实际表单地址）</span></p>
+      </li>
+      <li>
+        <strong>缴纳评审费 199 元</strong>
+        <p>提交申请表后，按页面提示完成缴费。评审费用于过滤低重视度申请、补偿人工评审时间。</p>
+        <p><span class="placeholder">缴费方式：待补充（微信/支付宝收款码或转账链接）</span></p>
+      </li>
+    </ol>
+
+    <div class="callout callout-warn">
+      <strong>退款规则：</strong>初审不通过或答辩不通过，3 个工作日内全额原路退款。提交申请后无故缺席答辩、临时取消且无合理理由，评审费不退。合理理由包括突发疾病、家庭紧急事务、重大设备或网络故障等不可抗因素，需在答辩前 24 小时告知并事后说明。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2><span class="num">04</span>人工初审</h2>
+    <p>提交申请后，评审人会实际打开你的仓库，检查：</p>
+    <ul>
+      <li>Commit 历史是否真实、有迭代痕迹（不是一次性刷出来的）</li>
+      <li>MD 文档是否记录了真实思考过程（不是套话、不是吹嘘成果）</li>
+      <li>你是否能说清楚自己在做什么、为什么这么做</li>
+    </ul>
+    <div class="callout callout-info">
+      <strong>⏱ 初审周期：</strong>一般 3-7 个工作日。通过后会通过你申请表里留的联系方式预约语音答辩时间。不通过则原路退款，并告知结果。
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2><span class="num">05</span>语音答辩</h2>
+    <p>初审通过后，进行一对一语音答辩，时长 15-30 分钟。</p>
+    <h3>答辩聊什么</h3>
+    <p>不考口才，不考技术深度。主要聊：</p>
+    <ul>
+      <li>你为什么想来这个社群？你想获得什么？</li>
+      <li>你愿意为社群贡献什么？</li>
+      <li>聊聊你的作品——哪一步推翻了原来的想法？最大的短板是什么？</li>
+      <li>你怎么看待不同意见？遇到卡点怎么处理？</li>
+      <li>你是否理解社群规则（不提供赚钱方案、每月交作品、不依附个人、合规红线）？</li>
+    </ul>
+    <div class="callout callout-info">
+      <strong>💡 旁听：</strong>答辩默认一对一。如果你同意，可以开启社群内部旁听（不涉及商业敏感内容时）。你随时可以要求关闭旁听、切换私密对话。
+    </div>
+    <p>完整答辩题库见 <a href="https://github.com/foreveropen/independent-practitioner-community/blob/main/interview-question.md" target="_blank" rel="noopener">interview-question.md</a>。</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2><span class="num">06</span>答辩结果</h2>
+    <table>
+      <tr><th>结果</th><th>后续</th></tr>
+      <tr><td>✅ 通过</td><td>分配编号 S-XXX，评审费转入社群公共共建基金，正式成为种子伙伴</td></tr>
+      <tr><td>❌ 不通过</td><td>评审费 3 个工作日内全额原路退款。3 个月后可带新作品重新申请（需重新缴费）</td></tr>
+    </table>
+    <p>入群后需要做的事：每月提交一份带仓库和 commit 记录的实践作品；参与交叉互评；自愿承担部分共建事务（树洞官轮值、文档维护等）；参与规则迭代讨论。</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2><span class="num">07</span>招募窗口关键数字</h2>
+    <table>
+      <tr><th>项目</th><th>说明</th></tr>
+      <tr><td>窗口期</td><td>90 天，从正式发布招募文档当日起算</td></tr>
+      <tr><td>目标人数</td><td>10-15 人</td></tr>
+      <tr><td>启动条件</td><td>窗口结束时答辩通过 ≥10 人 → 正式启动试运行</td></tr>
+      <tr><td>终止条件</td><td>窗口结束时答辩通过 ＜10 人 → 项目终止，不再招募</td></tr>
+      <tr><td>关闭申请</td><td>达到 15 人立即关闭申请通道，已提交的仍走完评审</td></tr>
+      <tr><td>冷却期</td><td>答辩失败后 3 个月可重新申请</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2><span class="num">08</span>常见问题</h2>
+    <div class="faq-item">
+      <summary>我不会写代码/没有技术背景，可以申请吗？</summary>
+      <div class="faq-body">可以。作品不限品类，写作、调研、设计、创作复盘都可以。你需要的是一个能记录思考过程的公开仓库（GitHub/Gitee），不是写代码的能力。</div>
+    </div>
+    <div class="faq-item">
+      <summary>我没有正在做的项目，可以申请吗？</summary>
+      <div class="faq-body">不建议。我们寻找的是"正在持续实践"的人。如果你目前没有在推进的事情，建议先自己做一段时间，有了真实的迭代痕迹再来申请。</div>
+    </div>
+    <div class="faq-item">
+      <summary>评审费交了之后多久有结果？</summary>
+      <div class="faq-body">初审一般 3-7 个工作日。答辩预约在初审通过后双方协调时间。从缴费到最终结果，通常在 2 周内完成。</div>
+    </div>
+    <div class="faq-item">
+      <summary>我在国内访问 GitHub 很慢怎么办？</summary>
+      <div class="faq-body">直接用 Gitee（码云）。建仓库、写 MD、做 commit 的流程和 GitHub 一样。评审不看平台，只看你的思考记录。</div>
+    </div>
+    <div class="faq-item">
+      <summary>通过后需要交钱吗？</summary>
+      <div class="faq-body">评审费通过后转入社群公共共建基金，用于服务器、公共文档等开支。没有额外的入群费或月费。社群不是付费圈子，你付出的是时间和作品。</div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="cta-box">
+    <h2>准备好开始了吗？</h2>
+    <p>先准备好你的作品仓库，再提交申请。<br>我们只找愿意双向付出的同频实践者。</p>
+    <a href="./" class="btn">← 返回首页</a>
+    <p style="margin-top:16px;font-size:0.8rem;opacity:0.5;">申请入口和缴费方式待补充 · 评审费 199 元 · 不通过全额退款</p>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <a href="README.md">README</a>
+    <a href="risk-statement.md">风险声明</a>
+    <a href="interview-question.md">答辩题库</a>
+    <a href="CHANGELOG.md">更新日志</a>
+  </div>
+</footer>
+
+</body>
+</html>
