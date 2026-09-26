@@ -2,6 +2,36 @@
 
 本项目所有变更按时间倒序记录。
 
+## 2026-09-26 16:20 CST — v0.3.1 全量审核 + 术语对齐
+
+### 审核结果
+对仓库全部文件做了一次交叉检查，发现并修复以下问题：
+
+| 检查项 | 结果 | 处理 |
+|--------|------|------|
+| 线上7个URL可访问性 | 全部200 | 通过 |
+| README / selection-criteria / risk-statement 逻辑一致性 | 基本一致 | 通过 |
+| index.html 术语"答辩"残留 | 11处未对齐新方向 | 改为"聊天" |
+| risk-statement.md "互评"残留 | 1处 | 改为"追问" |
+| 本地残留旧文件 seed-application-guide.md / interview-question.md | 已从GitHub删除但本地还在 | 本地删除 |
+| internal/ 目录是否误传GitHub | 未上传 | 通过（正确保持私有） |
+| members.js 空数组渲染 | 空态显示"种子招募中" | 通过 |
+| 申请入口是否隐藏 | 按钮+CTA+页脚链接均已注释 | 通过 |
+
+### 文件清单（线上）
+index.html — 官网首页（唯一对外入口）
+apply.html — 报名指南页（入口隐藏中）
+members.js — 成员数据（空模板）
+README.md — 项目说明
+selection-criteria.md — 公开筛选标准
+risk-statement.md — 风险声明
+CHANGELOG.md — 本文件
+
+### 本地文件（不上传）
+internal/interview-questions-internal.md — 内部题库
+daily-log-2026-09-26.html — 每日复盘记录
+
+## 2026-09-26 15:20 CST — v0.3.0 理念转向：透明、开源、轻压力
 ## 2026-09-26 15:20 CST — v0.3.0 理念转向：透明、开源、轻压力
 
 ### 这次为什么改
